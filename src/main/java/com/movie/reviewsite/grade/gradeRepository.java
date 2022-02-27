@@ -1,4 +1,12 @@
 package com.movie.reviewsite.grade;
 
-public interface gradeRepository {
+import org.springframework.data.repository.CrudRepository;
+import com.movie.reviewsite.grade.GradeEntity;
+import java.util.ArrayList;
+
+public interface GradeRepository extends CrudRepository<GradeEntity, Long> {
+
+    @Override
+    ArrayList<GradeEntity> findAll();
+
 }
