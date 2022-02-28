@@ -1,10 +1,12 @@
 package com.movie.reviewsite.grade;
 
+import com.movie.reviewsite.movie.MovieRepository;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -15,8 +17,20 @@ public class GradeService {
     @Autowired
     private GradeRepository gradeRepository;
 
-    public List<GradeEntity> index() {
-        return gradeRepository.findAll();
+    @Autowired
+    private MovieRepository movieRepository;
+
+    public List<GradeDto> grades(Long movieId) {
+        List<GradeEntity> grades = gradeRepository.findByMovieId(movieId);
+
+        List<GradeDto dtos = new ArrayList<GradeDto>();
+        for(int i=0; i<grades.size(); i++){
+            GradeEntity g = grades.get(i);
+            GradeDto dto = GradeDto.createGradeDto(g);
+            dtos.add(dto);
+        }
+
+        return dtos;
     }
 
     public GradeEntity show(Long id) {
@@ -31,18 +45,6 @@ public class GradeService {
         return gradeRepository.save(gradeEntity);
     }
 
-//    public GradeEntity update(Long id, GradeDto dto) {
-//        GradeEntity gradeEntity = dto.toEntity();
-//
-//        GradeEntity target = gradeRepository.findById(id).orElse(null);
-//        if(target == null || id != gradeEntity.getId()){
-//            return null; // 잘못된 요청처리 (원하는대상이 없거나 id가 틀렸을때)
-//        }
-//        target.patch(gradeEntity);
-//        GradeEntity updated = gradeRepository.save(target);
-//        return updated;
-//
-//    }
     public GradeEntity update(Long id, GradeDto dto) {
         GradeEntity gradeEntity = dto.toEntity();
 
@@ -65,4 +67,5 @@ public class GradeService {
         gradeRepository.delete(target);
         return target;
     }
+
 }

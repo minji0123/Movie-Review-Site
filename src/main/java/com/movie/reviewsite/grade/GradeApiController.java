@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class GradeApiController {
+public class GradeApiController { // @GetMapping("/detail/{id}")
 
     @Autowired
     private GradeService gradeService;
 
-    @GetMapping("/api/grades") // 전체보기
-    public List<GradeEntity> index(){
-        return gradeService.index();
+    @GetMapping("/api/grades/{movieId}/grades") // 전체보기
+    public ResponseEntity<List<GradeDto>> grades(@PathVariable Long movieId){
+        List<GradeDto> dtos = gradeService.grades(movieId);
+        return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
     @GetMapping("/api/grades/{id}") // 검색한 id 하나만 보기

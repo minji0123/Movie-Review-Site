@@ -1,4 +1,5 @@
 package com.movie.reviewsite.grade;
+import com.movie.reviewsite.movie.MovieEntity;
 import lombok.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,10 @@ public class GradeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private MovieEntity movie;
 
     @Column
     private String title;
