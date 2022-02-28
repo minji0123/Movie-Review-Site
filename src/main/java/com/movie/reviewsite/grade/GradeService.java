@@ -48,11 +48,12 @@ public class GradeService {
 
         GradeEntity target = gradeRepository.findById(id).orElse(null);
 
-        if (target == null || !id.equals(gradeEntity.getId())){
+        if (target == null){
             return null;  // 잘못된 요청 응답
         }
         target.patch(gradeEntity);
-        return gradeRepository.save(target);
+        GradeEntity updated = gradeRepository.save(target);
+        return updated;
     }
 
     public GradeEntity delete(Long id) {
