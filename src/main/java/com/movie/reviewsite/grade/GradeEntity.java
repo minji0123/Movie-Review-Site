@@ -28,5 +28,15 @@ public class GradeEntity {
     @Column
     private String body;
 
-
+    public void patch(GradeEntity gradeEntity) {
+        if(gradeEntity.title != null){
+            this.title = gradeEntity.title;
+        }
+        if(gradeEntity.grade != null){
+            this.grade = gradeEntity.grade;
+        }
+        if(gradeEntity.body != null){
+            this.body = gradeEntity.body;
+        }
+    }
 }
