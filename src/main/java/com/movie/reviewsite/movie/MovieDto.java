@@ -22,7 +22,7 @@ public class MovieDto {
 
     private Integer movieTime;
 
-    private Integer grade;
+    private String grade;
 
     public MovieEntity toEntity(){
         return new MovieEntity(id, imgUrl, title, content, director,actor, movieTime, grade);

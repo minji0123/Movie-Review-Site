@@ -2,6 +2,7 @@ package com.movie.reviewsite.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class MovieService {
@@ -19,8 +20,22 @@ public class MovieService {
         MovieEntity movieEntity = movieDto.toEntity();
         MovieEntity target = movieRepository.findById(id).orElse(null);
 
+        if(target==null){
+            return null;
+        }
+
         target.patch(movieEntity);
         return movieRepository.save(target);
     }
 
+    public MovieEntity delete(Long id){
+        MovieEntity movieEntity = movieRepository.findById(id).orElse(null);
+
+        if(movieEntity==null){
+            return null;
+        }
+
+        movieRepository.delete(movieEntity);
+        return movieEntity;
+    }
 }

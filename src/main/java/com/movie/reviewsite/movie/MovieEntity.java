@@ -21,7 +21,7 @@ public class MovieEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name="img_url")
     private String imgUrl;
 
     @Column(nullable = false, length = 50)
@@ -36,11 +36,11 @@ public class MovieEntity {
     @Column
     private String actor;
 
-    @Column
+    @Column(name="movie_time")
     private Integer movieTime;
 
     @Column
-    private Integer grade;
+    private String grade;
 
     public void patch(MovieEntity movieEntity) {
         if (movieEntity.imgUrl != null){

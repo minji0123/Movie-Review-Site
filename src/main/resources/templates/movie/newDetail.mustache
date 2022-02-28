@@ -1,0 +1,59 @@
+{{>layouts/header}}
+
+
+<form class="container" action="/detail/create" method="post">
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">title</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="title">
+</div>
+
+<label for="basic-url">imgUrl</label>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon2">https://example.com/users/</span>
+    </div>
+    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="imgUrl">
+</div>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text">director</span>
+    </div>
+    <input type="text" class="form-control" name="director">
+</div>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text">actor</span>
+    </div>
+    <input type="text" class="form-control" name="actor">
+</div>
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">content</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" name="content"></textarea>
+</div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">movieTime</span>
+        </div>
+        <input type="text" class="form-control" name="movieTime">
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">grade</span>
+        </div>
+        <input type="text" class="form-control" name="grade">
+    </div>
+
+    <button type="submit" class="btn btn-primary">확인</button>
+</form>
+
+
+{{>layouts/footer}}
