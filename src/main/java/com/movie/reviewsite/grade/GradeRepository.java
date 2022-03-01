@@ -15,7 +15,8 @@ public interface GradeRepository extends JpaRepository<GradeEntity, Long> {
             nativeQuery = true)
     List<GradeEntity> findByMovieId(Long movieId);
 
-    @Query(value = "SELECT * FROM GRADE_ENTITY WHERE title = :title")
+    @Query(value = "SELECT * FROM GRADE_ENTITY WHERE title = :title",
+            nativeQuery = true)
     List<GradeEntity> findByTitle(String title);
 
 

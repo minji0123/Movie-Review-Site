@@ -8,44 +8,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class GradeApiController { // @GetMapping("/detail/{id}")
+public class GradeApiController {
 
     @Autowired
     private GradeService gradeService;
 
-    @GetMapping("/api/grades/{movieId}/grades") // 전체보기
+    @GetMapping("/api/movies/{movieId}/grades") // 전체보기
     public ResponseEntity<List<GradeDto>> grades(@PathVariable Long movieId){
         List<GradeDto> dtos = gradeService.grades(movieId);
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
-    @GetMapping("/api/grades/{id}") // 검색한 id 하나만 보기
-    public GradeEntity show(@PathVariable Long id){
-        return gradeService.show(id);
-    }
-
-    @PostMapping("/api/grades")
-    public ResponseEntity<GradeEntity> create(@RequestBody GradeDto dto){
-        GradeEntity created= gradeService.create(dto);
-        return (created != null) ?
-                ResponseEntity.status(HttpStatus.OK).body(created)
-                : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    @PostMapping("/api/movies/{movieId}/grades")
+    public ResponseEntity<GradeDto> create(@PathVariable Long movieId,
+                                                @RequestBody GradeDto dto){
+        GradeDto createdDto = gradeService.create(movieId, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 
     @PatchMapping("/api/grades/{id}")
-    public ResponseEntity<GradeEntity> update(@PathVariable Long id,
+    public ResponseEntity<GradeDto> update(@PathVariable Long id,
                                               @RequestBody GradeDto dto){
-        GradeEntity updated = gradeService.update(id, dto);
-        return (updated != null) ?
-                ResponseEntity.status(HttpStatus.OK).body(updated)
-                : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        GradeDto updatedDto = gradeService.update(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
     }
+
     @DeleteMapping("/api/grades/{id}")
-    public ResponseEntity<GradeEntity> delete(@PathVariable Long id){
-        GradeEntity deleted = gradeService.delete(id);
-        return (deleted != null) ?
-                ResponseEntity.status(HttpStatus.OK).body(deleted)
-                : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<GradeDto> delete(@PathVariable Long id){
+        GradeDto deleted = gradeService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(deleted);
     }
 
 }

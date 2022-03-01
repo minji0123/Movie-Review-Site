@@ -1,5 +1,7 @@
 package com.movie.reviewsite.movie;
 
+import com.movie.reviewsite.grade.GradeDto;
+import com.movie.reviewsite.grade.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private GradeService gradeService;
 
     // movieDetail 화면 전체 view 페이지
     @GetMapping("/detail")
@@ -29,7 +33,9 @@ public class MovieController {
     @GetMapping("/detail/{id}")
     public String detailMovie(@PathVariable Long id, Model model){
         MovieEntity movieEntity = movieRepository.findById(id).orElse(null);
+        List<GradeDto> gradeDtos = gradeService.grades(id);
         model.addAttribute("movieEntity",movieEntity);
+        model.addAttribute("gradesDtos", gradeDtos);
         return "/movie/detail";
     }
 
