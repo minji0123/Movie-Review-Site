@@ -1,0 +1,104 @@
+<div id="grades-list">
+    <hr>
+    <h2>댓글</h2>
+    {{#gradesDtos}} <!-- 이 DTO를 모델에 등록해줘야만 화면에 나타남 MovieController.detailMovie() -->
+        <div>
+            <ul class="list-group list-group-horizontal m-3" id="grades-{{id}}">
+                <li class="list-group-item">{{title}}</li>
+                <li class="list-group-item">{{body}}</li>
+                <li class="list-group-item">평점: {{grade}}점</li>
+                <li class="list-group-item"><button type="button"
+                            class="btn btn-sm btn-outline-info"
+                            data-bs-toggle="modal"
+                            data-bs-target="#grade-edit-modal"
+                            data-bs-id="{{id}}"
+                            data-bs-title="{{title}}"
+                            data-bs-body="{{body}}"
+                            data-bs-grade="{{grade}}"
+                            data-bs-movie-id="{{movieId}}"
+                                >수정</button></li>
+
+            </ul>
+        </div>
+    {{/gradesDtos}}
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="grade-edit-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">내용 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">이름</label>
+                        <input class="form-control form-controll-sm" id="edit-grade-title">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">한줄평</label>
+                        <textarea class="form-control form-controll-sm" rows="3" id="edit-grade-body"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">평점</label>
+                        <input class="form-control form-controll-sm" id="edit-grade-grade">
+                    </div>
+                        <input type="hidden" id="edit-grade-id">
+                        <input type="hidden" id="edit-grade-movie-id">
+                    <button type="button" class="btn btn-outline-info btn-sm" id="grade-update-btn">수정하기</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 모달 이벤트 -->
+<script>
+{
+    const gradeEditModal = document.querySelector("grade-edit-modal");
+    gradeEditModal.addEventListener("show.bs.modal", function(event){
+        const triggerBtn = event.relatedTarget
+
+        const id = triggerBtn.getAttribute("data-bs-id");
+        const title = triggerBtn.getAttribute("data-bs-title");
+        const body = triggerBtn.getAttribute("data-bs-body");
+        const grade = triggerBtn.getAttribute("data-bs-grade");
+        const movieId = triggerBtn.getAttribute("data-bs-movie-id");
+
+        document.querySelector("#edit-grade-title").value = title;
+        document.querySelector("#edit-grade-body").value = body;
+        document.querySelector("#edit-grade-grade").value = grade;
+        document.querySelector("#edit-grade-id").value = id;
+        document.querySelector("#edit-grade-movie-id").value = title;
+    });
+}
+
+{
+    const gradeUpdateBtn = document.querySelector("#grade-update-btn");
+    gradeUpdateBtn.addEventListener("click", function(){
+        const grade {
+            id: document.querySelector("#edit-grade-id").value,
+            title: document.querySelector("#edit-grade-title").value,
+            body: document.querySelector("#edit-grade-body").value,
+            grade: document.querySelector("#edit-grade-grade").value,
+            movie_id: document.querySelector("#edit-grade-movie-id").value;
+        };
+        console.log(grade);
+
+        const url = "/api/grades/" + grade.id;
+        fetch(url, {
+            method: "PATCH",
+            body: JSON.stringify(grade),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then(response => {
+            const msg = (response.ok) ? "내용이 수정되었습니다" : "수정 실패";
+            alert(msg);
+            window.location.reload();
+        });
+    });
+}
+</script>
