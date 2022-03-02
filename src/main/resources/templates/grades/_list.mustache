@@ -57,9 +57,9 @@
 <!-- 모달 이벤트 -->
 <script>
 {
-    const gradeEditModal = document.querySelector("grade-edit-modal");
+    const gradeEditModal = document.querySelector("#grade-edit-modal");
     gradeEditModal.addEventListener("show.bs.modal", function(event){
-        const triggerBtn = event.relatedTarget
+        const triggerBtn = event.relatedTarget;
 
         const id = triggerBtn.getAttribute("data-bs-id");
         const title = triggerBtn.getAttribute("data-bs-title");
@@ -71,19 +71,16 @@
         document.querySelector("#edit-grade-body").value = body;
         document.querySelector("#edit-grade-grade").value = grade;
         document.querySelector("#edit-grade-id").value = id;
-        document.querySelector("#edit-grade-movie-id").value = title;
-    });
-}
+        document.querySelector("#edit-grade-movie-id").value = movieId;
 
-{
-    const gradeUpdateBtn = document.querySelector("#grade-update-btn");
-    gradeUpdateBtn.addEventListener("click", function(){
-        const grade {
+        const gradeUpdateBtn = document.querySelector("#grade-update-btn");
+        gradeUpdateBtn.addEventListener("click", function(){
+        const grade = {
             id: document.querySelector("#edit-grade-id").value,
             title: document.querySelector("#edit-grade-title").value,
             body: document.querySelector("#edit-grade-body").value,
             grade: document.querySelector("#edit-grade-grade").value,
-            movie_id: document.querySelector("#edit-grade-movie-id").value;
+            movie_id: document.querySelector("#edit-grade-movie-id").value
         };
         console.log(grade);
 
@@ -98,7 +95,8 @@
             const msg = (response.ok) ? "내용이 수정되었습니다" : "수정 실패";
             alert(msg);
             window.location.reload();
-        });
+             });
+         });
     });
 }
 </script>
