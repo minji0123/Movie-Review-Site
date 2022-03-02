@@ -77,33 +77,31 @@
         document.querySelector("#edit-grade-grade").value = grade;
         document.querySelector("#edit-grade-id").value = id;
         document.querySelector("#edit-grade-movie-id").value = movieId;
-    });
-}
 
-{
-    const gradeUpdateBtn = document.querySelector("#grade-update-btn");
-    gradeUpdateBtn.addEventListener("click", function(){
-        const gradeDTD = {
+         const gradeUpdateBtn = document.querySelector("#grade-update-btn");
+        gradeUpdateBtn.addEventListener("click", function(){
+        const grade = {
+
             id: document.querySelector("#edit-grade-id").value,
             title: document.querySelector("#edit-grade-title").value,
             body: document.querySelector("#edit-grade-body").value,
             grade: document.querySelector("#edit-grade-grade").value,
             movie_id: document.querySelector("#edit-grade-movie-id").value
         };
-        console.log(gradeDTD);
 
-        const url = "/api/grades/" + gradeDTD.id;
+        const url = "/api/grades/" + grade.id;
         fetch(url, {
             method: "PATCH",
-            body: JSON.stringify(gradeDTD),
+            body: JSON.stringify(grade),
             headers: {
                 "Content-type": "application/json"
             }
         }).then(response => {
             const msg = (response.ok) ? "내용이 수정되었습니다" : "수정 실패";
             alert(msg);
-            //window.location.reload();
-        });
+            window.location.reload();
+             });
+         });
     });
 }
 </script>
