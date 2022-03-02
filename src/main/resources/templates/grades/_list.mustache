@@ -17,8 +17,11 @@
                             data-bs-body="{{body}}"
                             data-bs-grade="{{grade}}"
                             data-movie-id="{{movieId}}"
-                                >수정</button></li>
-                            </ul>
+                                >수정</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger grade-delete-btn"
+                            data-grade-id="{{id}}">
+                                삭제</button></li>
+            </ul>
         </div>
     {{/gradesDtos}}
 </div>
@@ -56,7 +59,7 @@
 </div>
 
 
-<!-- 모달 이벤트 -->
+<!-- 수정 모달 이벤트 -->
 <script>
 {
     const gradeEditModal = document.querySelector("#grade-edit-modal");
@@ -100,5 +103,36 @@
              });
          });
     });
+}
+</script>
+
+<!-- 삭제버튼 -->
+<script>
+{
+    const gradeDeleteBtns = document.querySelectorAll(".grade-delete-btn");
+    gradeDeleteBtns.forEach(btn => {
+        btn.addEventListener("click", (event) => {
+            const gradeDeleteBtn = event.srcElement; //이 이벤트를 발생시킨 대상을 가져와서 변수화
+            const gradeId = gradeDeleteBtn.getAttribute("data-grade-id"); // 삭제할 댓글 id가져오기
+            console.log(`삭제버튼클릭: ${gradeId}번 한줄평 내용`);
+
+            const url = "/api/grades/" + gradeId;
+            fetch(url, {
+                method : "DELETE"
+            }).then(response => {
+                if(!response.ok) {
+                alert("댓글 삭제 실패");
+                return;
+                }
+                const target = document.querySelector(`#grades-${gradeId}`);
+                target.remove();
+            });
+        });
+    });
+
+
+
+
+
 }
 </script>
