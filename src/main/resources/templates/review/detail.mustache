@@ -1,0 +1,33 @@
+{{>layouts/header}}
+{{#reviewEntity}}
+    <!-- 적당한 css 못찾아서 그냥 대충 때움 -->
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">영화제목</li>
+    <li class="list-group-item">{{movieTitle}}</li>
+</ul>
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">리뷰제목</li>
+    <li class="list-group-item">{{title}}</li>
+</ul>
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">별점</li>
+    <li class="list-group-item">{{score}}</li>
+</ul>
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">글쓴이</li>
+    <li class="list-group-item">{{writer}}</li>
+</ul>
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">내용</li>
+    <li class="list-group-item">{{content}}</li>
+</ul>
+<ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">조회</li>
+    <li class="list-group-item">{{views}}</li>
+</ul>
+
+<a href="/review/edit/{{id}}">수정</a>
+<a href="/review/delete/{{id}}">삭제</a>
+<a href="/review">Back</a>
+{{/reviewEntity}}
+{{>layouts/footer}}
