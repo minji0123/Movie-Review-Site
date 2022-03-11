@@ -18,6 +18,10 @@ public class ReviewService {
     @Autowired
     private MovieRepository movieRepository;
 
+
+
+
+
     public ReviewEntity create(ReviewDto reviewDto){
         MovieEntity target = movieRepository.findById(reviewDto.getMovieId()).orElse(null);
         reviewDto.setMovieTitle(target.getTitle());

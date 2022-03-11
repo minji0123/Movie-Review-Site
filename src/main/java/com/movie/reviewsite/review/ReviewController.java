@@ -59,6 +59,8 @@ public class ReviewController {
         model.addAttribute("reviewEntity", reviewEntity);
         return "/review/edit";
     }
+
+
     // 리뷰 수정
     @PostMapping("/review/update")
     public String update(ReviewDto reviewDto){
