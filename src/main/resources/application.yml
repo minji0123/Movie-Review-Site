@@ -1,0 +1,18 @@
+# logging level config
+logging:
+  level:
+    root: INFO
+    sql: ERROR
+
+# Overloaded POST enabled
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+# session
+server:
+  servlet:
+    session:
+      timeout: 10m
