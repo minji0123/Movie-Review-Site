@@ -5,11 +5,13 @@ import com.movie.reviewsite.movie.MovieRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @Slf4j
+@Transactional
 public class ReviewService {
 
     @Autowired
@@ -18,14 +20,24 @@ public class ReviewService {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Transactional(readOnly = true)
+    public List<ReviewEntity> findAll(){
+
+        return reviewRepository.findAll();
 
 
+    }
 
+    @Transactional(readOnly = true)
+    public ReviewEntity findById(Long id){
+        return reviewRepository.findById(id).orElse(null);
+    }
 
+    // todo : reviewDto.setMovieTitle(target.getTitle()) 한 이유 물어보기
     public ReviewEntity create(ReviewDto reviewDto){
+
         MovieEntity target = movieRepository.findById(reviewDto.getMovieId()).orElse(null);
         reviewDto.setMovieTitle(target.getTitle());
-
         ReviewEntity reviewEntity = reviewDto.toEntity();
 
         return reviewRepository.save(reviewEntity);

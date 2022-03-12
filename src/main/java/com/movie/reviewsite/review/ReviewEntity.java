@@ -23,7 +23,7 @@ public class ReviewEntity {
     private Long movieId;
 
     @Column(nullable = false, name = "movie_title")
-    private String movieTitle;
+    private String movieTitle;// 변수 설정한 이유 물어보기
 
     @Column(nullable = false)
     private String title;

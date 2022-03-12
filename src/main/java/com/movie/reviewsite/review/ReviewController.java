@@ -2,6 +2,7 @@ package com.movie.reviewsite.review;
 
 import com.movie.reviewsite.movie.MovieEntity;
 import com.movie.reviewsite.movie.MovieRepository;
+import com.movie.reviewsite.movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,23 +25,33 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    private MovieService movieService;
+
     @GetMapping("/review")      // 리뷰 리스트 보여주기
     public String allReviewPage(Model model){
-        List<ReviewEntity> reviewEntityList = reviewRepository.findAll();
+//        List<ReviewEntity> reviewEntityList = reviewRepository.findAll();
+        List<ReviewEntity> reviewEntityList = reviewService.findAll();
         model.addAttribute("reviewEntityList", reviewEntityList);
         return "/review/reviews";
     }
 
     @GetMapping("/review/{id}") // 리뷰 디테일 보여주기
     public String detailReviewPage(@PathVariable Long id, Model model){
-        ReviewEntity reviewEntity = reviewRepository.findById(id).orElse(null);
+
+//        ReviewEntity reviewEntity = reviewRepository.findById(id).orElse(null);
+        ReviewEntity reviewEntity = reviewService.findById(id);
         model.addAttribute("reviewEntity", reviewEntity);
+
         return "/review/detail";
     }
 
     @GetMapping("/review/new")  // 새 리뷰 작성 창
     public String newReviewPage(Model model){
-        List<MovieEntity> movieEntityList = movieRepository.findAll();
+
+//        List<MovieEntity> movieEntityList = movieRepository.findAll();
+        List<MovieEntity> movieEntityList = movieService.findAll();
+
         model.addAttribute("movieEntityList", movieEntityList);
         return "/review/newReview";
     }
@@ -55,7 +66,8 @@ public class ReviewController {
     // 리뷰 수정 페이지
     @GetMapping("/review/edit/{id}")
     public String editReviewPage(@PathVariable Long id, Model model){
-        ReviewEntity reviewEntity = reviewRepository.findById(id).orElse(null);
+
+        ReviewEntity reviewEntity = reviewService.findById(id);
         model.addAttribute("reviewEntity", reviewEntity);
         return "/review/edit";
     }
@@ -63,19 +75,22 @@ public class ReviewController {
 
     // 리뷰 수정
     @PostMapping("/review/update")
-    public String update(ReviewDto reviewDto){
-        ReviewEntity reviewEntity = reviewDto.toEntity();
-        ReviewEntity target = reviewRepository.findById(reviewDto.getId()).orElse(null);
+    public String update(Long id, ReviewDto reviewDto){
 
-        if(target != null){
-            reviewRepository.save(reviewEntity);
-        }
-        else{
-            // 수정할 내용이 없을 시 들어갈 내용
-        }
+        ReviewEntity reviewEntity = reviewService.edit(id, reviewDto);
+//        ReviewEntity reviewEntity = reviewDto.toEntity();
+//        ReviewEntity target = reviewRepository.findById(reviewDto.getId()).orElse(null);
+//
+//        if(target != null){
+//            reviewRepository.save(reviewEntity);
+//        }
+//        else{
+//            // 수정할 내용이 없을 시 들어갈 내용
+//        }
         return "redirect:/review/" + reviewDto.getId();
     }
 
+    // todo: 왜 get 으로 했는지 물어보기
     // 삭제
     @GetMapping("/review/delete/{id}")
     public String deleteReview(@PathVariable Long id){

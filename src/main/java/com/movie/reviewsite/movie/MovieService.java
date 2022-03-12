@@ -16,7 +16,6 @@ public class MovieService {
 
     @Transactional(readOnly = true)
     public List<MovieEntity> findAll(){
-
         return movieRepository.findAll();
     }
 

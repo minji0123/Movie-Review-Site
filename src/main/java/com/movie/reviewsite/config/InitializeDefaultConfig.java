@@ -5,7 +5,9 @@ import com.movie.reviewsite.user.UserEntity;
 import com.movie.reviewsite.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class InitializeDefaultConfig {
 
     @Autowired
@@ -13,6 +15,7 @@ public class InitializeDefaultConfig {
 
     @Autowired
     private ReviewService reviewService;
+
     // 유저 등록, 리뷰 등록
     @Bean
     public void initializeDefaultUser() {

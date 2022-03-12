@@ -59,7 +59,8 @@ public class MovieController {
     // movie 수정 view 페이지
     @GetMapping("/detail/update/{id}")
     public String updateMoviePage(@PathVariable Long id,Model model){
-        MovieEntity movieEntity = movieRepository.findById(id).orElse(null);
+
+        MovieEntity movieEntity = movieService.findMovie(id);
         model.addAttribute("movieEntity", movieEntity);
         return "/movie/update";
     }
