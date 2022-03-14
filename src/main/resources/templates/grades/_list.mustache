@@ -1,29 +1,41 @@
 <div id="grades-list">
-    <hr>
+
     <h2>댓글</h2>
-    {{#gradesDtos}} <!-- 이 DTO를 모델에 등록해줘야만 화면에 나타남 MovieController.detailMovie() -->
-        <div>
-            <ul class="list-group list-group-horizontal m-3" id="grades-{{id}}">
-                <li class="list-group-item">{{title}}</li>
-                <li class="list-group-item">{{body}}</li>
-                <li class="list-group-item">평점: {{grade}}점</li>
-                <li class="list-group-item">
-                    <button type="button"
-                            class="btn btn-sm btn-outline-info"
-                            data-bs-toggle="modal"
-                            data-bs-target="#grade-edit-modal"
-                            data-bs-id="{{id}}"
-                            data-bs-title="{{title}}"
-                            data-bs-body="{{body}}"
-                            data-bs-grade="{{grade}}"
-                            data-movie-id="{{movieId}}"
-                                >수정</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger grade-delete-btn"
-                            data-grade-id="{{id}}">
-                                삭제</button></li>
-            </ul>
-        </div>
-    {{/gradesDtos}}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col">내용</th>
+            <th scope="col">평점</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+{{#gradesDtos}} <!-- 이 DTO를 모델에 등록해줘야만 화면에 나타남 MovieController.detailMovie() -->
+   <tbody>
+    <tr id="grades-{{id}}">
+        <td scope="row">{{title}}</td>
+        <td scope="row">{{body}}</td>
+        <td scope="row">{{grade}}</td>
+        <td>
+            <button type="button"
+                    class="btn btn-sm btn-outline-info"
+                    data-bs-toggle="modal"
+                    data-bs-target="#grade-edit-modal"
+                    data-bs-id="{{id}}"
+                    data-bs-title="{{title}}"
+                    data-bs-body="{{body}}"
+                    data-bs-grade="{{grade}}"
+                    data-movie-id="{{movieId}}"
+                    >수정</button>
+            <button type="button" class="btn btn-sm btn-outline-danger grade-delete-btn"
+                    data-grade-id="{{id}}">
+                삭제</button>
+        </td>
+    </tr>
+   </tbody>
+{{/gradesDtos}}
+</table>
 </div>
 
 
@@ -33,7 +45,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">내용 수정</h5>
-                <button type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
                 <form>

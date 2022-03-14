@@ -32,49 +32,20 @@
     <h2>영화</h2>
     <div class="row">
 
+        {{#movieEntityList}}
         <div class="col-2">
             <div class="card" style="width: 15rem;">
-                <img src="img/%253F%253F%253F_%253F%253F_2.png" class="card-img-top" alt="...">
+                <a href="/detail/{{id}}">
+                <img src="{{imgUrl}}" class="card-img-top card-img" alt="...">
                 <div class="card-body">
-                    <h2>주토피아</h2>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h2>{{title}}</h2>
+<!--                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
                 </div>
+                </a>
             </div>
         </div>
         <div class="col-1"></div>
-        <div class="col-2">
-            <div class="card" style="width: 15rem;">
-                <img src="img/2a81f4ff543de3185f2d376bbd5f2763e1aa105e27d0deebb0c1462d6ce407b190ca1cf1d6892db825974c916f9dc865878ac428fa07bf2634d3b08d7341700e71dee0837269a7b0253f2c09a4962f09.jfif" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h2>슈퍼맨</h2>
-
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-1"></div>
-
-
-        <div class="col-2">
-            <div class="card" style="width: 15rem;">
-
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-1"></div>
-
-        <div class="col-2">
-            <div class="card" style="width: 15rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-
+        {{/movieEntityList}}
 
     </div>
 </div>
@@ -82,27 +53,31 @@
 
 <div class="container">
     <h2>평점</h2>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-    </ul>
+        <table class="table">
+
+        {{#reviewEntityList}}
+            <tr>
+                <td scope="row"> <a href="/review/{{id}}"> {{title}} </a> </td>
+                <td scope="row">{{writer}}</td>
+            </tr>
+
+        {{/reviewEntityList}}
+
+    </table>
 </div>
 
-<div style="margin-bottom: 100px;"></div>
+<!--<div style="margin-bottom: 100px;"></div>-->
 
-<div class="container">
-    <h2>리뷰</h2>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-    </ul>
-</div>
+<!--<div class="container">-->
+<!--    <h2>리뷰</h2>-->
+<!--    <ul class="list-group list-group-flush">-->
+<!--        <li class="list-group-item">An item</li>-->
+<!--        <li class="list-group-item">A second item</li>-->
+<!--        <li class="list-group-item">A third item</li>-->
+<!--        <li class="list-group-item">A fourth item</li>-->
+<!--        <li class="list-group-item">And a fifth one</li>-->
+<!--    </ul>-->
+<!--</div>-->
 
 <div style="margin-bottom: 100px;"></div>
 

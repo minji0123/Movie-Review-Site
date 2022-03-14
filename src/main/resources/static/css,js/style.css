@@ -11,12 +11,14 @@ body{
 .main-img{
     width: 100%;
 }
-.card-text{
-    
+.card-img{
+    height: 300px;
 }
-.carousel-img{
+.detail-card-img{
+width: 100%;
+}
 
-}
 a{
+    text-decoration: none;
     color:black;
 }
