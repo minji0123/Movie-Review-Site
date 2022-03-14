@@ -33,7 +33,6 @@ public class ReviewService {
         return reviewRepository.findById(id).orElse(null);
     }
 
-    // todo : reviewDto.setMovieTitle(target.getTitle()) 한 이유 물어보기
     public ReviewEntity create(ReviewDto reviewDto){
 
         MovieEntity target = movieRepository.findById(reviewDto.getMovieId()).orElse(null);

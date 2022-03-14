@@ -22,7 +22,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.rememberMe(); // remember me
 
 //        http.authorizeRequests()
-
                 // view 페이지 완성 후 지정 예정
+
+
+        // 로그인
+        http.formLogin()
+                .loginPage("/login") // 페이지는 login.html
+                .defaultSuccessUrl("/") // 요청성공하면 / url 로 이동
+                .permitAll(); // 모두 허용!
+
+
     }
 }

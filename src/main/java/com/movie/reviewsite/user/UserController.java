@@ -24,6 +24,6 @@ public class UserController {
     @PostMapping
     public String signupProcess(@ModelAttribute UserDto userDto) {
         userService.signup(userDto);
-        return "redirect:/";
+        return "redirect:/signin";
     }
 }

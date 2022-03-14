@@ -90,7 +90,6 @@ public class ReviewController {
         return "redirect:/review/" + reviewDto.getId();
     }
 
-    // todo: 왜 get 으로 했는지 물어보기
     // 삭제
     @GetMapping("/review/delete/{id}")
     public String deleteReview(@PathVariable Long id){
