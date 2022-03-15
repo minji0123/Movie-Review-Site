@@ -36,15 +36,19 @@ public class MovieService {
 
 
         String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\movieposters"; // 저장할 경로 지정
+//        log.info("***********projectPath : {}", projectPath);
+//        System.out.println();
+//        log.info("************"+ System.getProperty("user.dir"));
+
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + file.getOriginalFilename(); //UUID를 이용하여 파일 고유이름을 랜덤으로 생성하여 지정해줌
         File saveFile = new File(projectPath, fileName); // 들어온 파일(영화포스터))을 받아줄 틀 생성
         file.transferTo(saveFile); // 빨간줄 뜨는건 Exception 처리
 
 
+        // todo: 경로를 설정했으면 setter 로 값을 넣어줘야 함. 우리 프로젝트에서는 dto 와 entity 가 분리되어 있기 때문에 해당 부분을 수행해야 함
         movieEntity.setImgName(fileName); // 생성한 파일이름을 저장해줌
         movieEntity.setImgUrl("/movieposters/" + fileName); // 생성한 파일이름을 저장해줌
-        log.info("movieEntity : {}", movieEntity);
 
         return movieRepository.save(movieEntity);
     }
