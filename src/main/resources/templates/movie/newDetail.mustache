@@ -6,7 +6,7 @@
     <h1> 영화 등록 </h1>
     <div style="margin-bottom: 10px;"></div>
 
-    <form class="container" action="/detail/create" method="post">
+    <form class="container" action="/detail/create" method="post" enctype="multipart/form-data">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">title</span>
@@ -56,8 +56,17 @@
             <textarea class="form-control" aria-label="With textarea" name="content"></textarea>
         </div>
         <div style="margin-bottom: 10px;"></div>
+
+<!--        <input type="file" class="form-control" name="movie-poster">-->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">movie poster</span>
+            </div>
+            <input type="file" class="form-control" name="poster"> <!-- name poster 명시 -->
+        </div>
+
         <button type="submit" class="btn btn-outline-secondary">확인</button>
-        <a href="/detail">back</a>
+        <a class="btn btn-outline-secondary" href="/detail">back</a>
     </form>
 </div>
 <div style="margin-bottom: 100px;"></div>

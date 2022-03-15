@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,7 +26,9 @@ public class MovieController {
     public String allMoviePage(Model model){
 
         List<MovieEntity> movieEntityList = movieService.findAll();
+        List<MovieEntity> movieEntity = movieService.findAll(); // 추가해봤는데...
         model.addAttribute("movieEntityList", movieEntityList);
+        model.addAttribute("movieEntity", "/detail/{{id}}"); //추가해봤는데...
         return"/movie/details";
     }
 
@@ -49,9 +52,10 @@ public class MovieController {
 
     // movie 등록 post
     @PostMapping("/detail/create") // action
-    public String createMovie(MovieDto movieDto){
+    public String createMovie(MovieDto movieDto, MultipartFile poster, Model model) throws Exception {
 
-       MovieEntity movieEntity = movieService.create(movieDto);
+       MovieEntity movieEntity = movieService.create(movieDto, poster);
+       model.addAttribute("poster", movieEntity); // 모델 추가하긴했는데...
 
         return "redirect:/details";
     }

@@ -10,6 +10,8 @@ public class MovieDto {
 
     private Long id;
 
+    private String imgName;
+
     private String imgUrl;
 
     private String title;
@@ -25,6 +27,6 @@ public class MovieDto {
     private String grade;
 
     public MovieEntity toEntity(){
-        return new MovieEntity(id, imgUrl, title, content, director,actor, movieTime, grade);
+        return new MovieEntity(id, imgName, imgUrl, title, content, director,actor, movieTime, grade);
     }
 }

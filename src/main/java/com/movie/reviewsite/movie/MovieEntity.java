@@ -21,6 +21,9 @@ public class MovieEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="img_name")
+    private String imgName;
+
     @Column(name="img_url")
     private String imgUrl;
 
@@ -42,9 +45,13 @@ public class MovieEntity {
     @Column
     private String grade;
 
+
     public void patch(MovieEntity movieEntity) {
         if (movieEntity.imgUrl != null){
             this.imgUrl = movieEntity.imgUrl;
+        }
+        if (movieEntity.imgName != null){
+            this.imgName = movieEntity.imgName;
         }
         if (movieEntity.title != null){
             this.title = movieEntity.title;
