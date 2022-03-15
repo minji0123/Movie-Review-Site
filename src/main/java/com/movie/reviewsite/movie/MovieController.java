@@ -26,9 +26,11 @@ public class MovieController {
     public String allMoviePage(Model model){
 
         List<MovieEntity> movieEntityList = movieService.findAll();
-        List<MovieEntity> movieEntity = movieService.findAll(); // 추가해봤는데...
+//        List<MovieEntity> movieEntity = movieService.findAll(); // 추가해봤는데...
+
         model.addAttribute("movieEntityList", movieEntityList);
-        model.addAttribute("movieEntity", "/detail/{{id}}"); //추가해봤는데...
+//        model.addAttribute("movieEntity", "/detail/{{id}}"); //추가해봤는데...
+
         return"/movie/details";
     }
 
@@ -47,6 +49,7 @@ public class MovieController {
     // movie 등록 view 페이지
     @GetMapping("/detail/new")
     public String newMoviePage(){
+
         return"/movie/newDetail";
     }
 
@@ -55,7 +58,7 @@ public class MovieController {
     public String createMovie(MovieDto movieDto, MultipartFile poster, Model model) throws Exception {
 
        MovieEntity movieEntity = movieService.create(movieDto, poster);
-       model.addAttribute("poster", movieEntity); // 모델 추가하긴했는데...
+//       model.addAttribute("poster", movieEntity); // 모델 추가하긴했는데...
 
         return "redirect:/details";
     }

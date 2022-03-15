@@ -32,7 +32,7 @@ public class MainController {
         List<ReviewEntity> reviewEntityList = reviewService.findAll();
         model.addAttribute("reviewEntityList", reviewEntityList);
 
-        return"index";
+        return "index";
     }
 
 

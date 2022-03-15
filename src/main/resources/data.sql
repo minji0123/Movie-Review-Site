@@ -1,5 +1,5 @@
-INSERT INTO movie_info(id, img_url, title, content, director, actor, movie_time, grade) VALUES (1,'https://mblogthumb-phinf.pstatic.net/20160514_227/prun_dar_1463233437152pOrtI_PNG/%C1%D6%C5%E411.png?type=w800', '주토피아', '줄거리','감독1','주디, 닉', 120,'전체이용가');
-INSERT INTO movie_info(id, img_url, title, content, director, actor, movie_time, grade) VALUES (2,'https://upload.wikimedia.org/wikipedia/ko/thumb/0/0f/%EB%B0%B0%ED%8A%B8%EB%A7%A8_%EB%B9%84%EA%B8%B4%EC%A6%88_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg/220px-%EB%B0%B0%ED%8A%B8%EB%A7%A8_%EB%B9%84%EA%B8%B4%EC%A6%88_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg', '배트맨', '줄거리','감독2','배트맨', 120,'전체이용가');
+INSERT INTO movie_info(id, img_name, img_url, title, content, director, actor, movie_time, grade) VALUES (1,'', 'https://mblogthumb-phinf.pstatic.net/20160514_227/prun_dar_1463233437152pOrtI_PNG/%C1%D6%C5%E411.png?type=w800', '주토피아', '줄거리','감독1','주디, 닉', 120,'전체이용가');
+INSERT INTO movie_info(id, img_name, img_url, title, content, director, actor, movie_time, grade) VALUES (2,'', 'https://upload.wikimedia.org/wikipedia/ko/thumb/0/0f/%EB%B0%B0%ED%8A%B8%EB%A7%A8_%EB%B9%84%EA%B8%B4%EC%A6%88_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg/220px-%EB%B0%B0%ED%8A%B8%EB%A7%A8_%EB%B9%84%EA%B8%B4%EC%A6%88_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg', '배트맨', '줄거리','감독2','배트맨', 120,'전체이용가');
 
 INSERT INTO GRADE_ENTITY(id, movie_id, title, grade, body) values (1, 1, '재밌어요', 5, '너무 재미있었어요');
 INSERT INTO GRADE_ENTITY(id, movie_id, title, grade, body) values (2, 1, '감동이에요', 5, '정말 감동적인 영화에요');

@@ -1,5 +1,6 @@
 package com.movie.reviewsite.movie;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@Slf4j
 public class MovieService {
 
     @Autowired
@@ -30,13 +32,19 @@ public class MovieService {
 
     public MovieEntity create(MovieDto movieDto, MultipartFile file) throws Exception{
 
+        MovieEntity movieEntity = movieDto.toEntity(); //dto -> entity
+
+
         String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\movieposters"; // 저장할 경로 지정
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + file.getOriginalFilename(); //UUID를 이용하여 파일 고유이름을 랜덤으로 생성하여 지정해줌
         File saveFile = new File(projectPath, fileName); // 들어온 파일(영화포스터))을 받아줄 틀 생성
         file.transferTo(saveFile); // 빨간줄 뜨는건 Exception 처리
 
-        MovieEntity movieEntity = movieDto.toEntity(); //dto -> entity
+
+        movieEntity.setImgName(fileName); // 생성한 파일이름을 저장해줌
+        movieEntity.setImgUrl("/movieposters/" + fileName); // 생성한 파일이름을 저장해줌
+        log.info("movieEntity : {}", movieEntity);
 
         return movieRepository.save(movieEntity);
     }
