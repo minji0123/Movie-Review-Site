@@ -7,34 +7,30 @@
 
 <div class="container">
 
-    <span class="badge bg-secondary" style="float:right">{{movieTitle}}</span>
-    <span class="badge bg-danger" style="float:right">{{score}}</span>
+    <span class="badge bg-secondary span-badge" style="float:right">{{movieTitle}}</span>
+    <span class="badge bg-danger span-badge" style="float:right">{{score}}</span>
+
     <div style="clear:both"></div>
     <div style="margin-bottom: 10px;"></div>
 
 
-    <div class="card">
-        <div class="card-header">
-            <h5 style="float:left">{{title}}</h5>
-            <p style="float:right">{{writer}}</p>
-        </div>
-        <div class="card-body">
-            <p class="card-text">{{content}}</p>
-        </div>
-    </div>
+    <h1 style="float:left">{{title}}</h1>
+    <p class="review-text" style="float:right">{{writer}}</p>
+    <div style="clear:both"></div>
+
+    <hr>
+
+    <p class="review-text">{{content}}</p>
 
 
-    <div style="margin-bottom: 10px;"></div>
+    <div style="margin-bottom: 100px;"></div>
 
 
         <a href="/review/edit/{{id}}">수정</a>
         <a href="/review/delete/{{id}}">삭제</a>
         <a href="/review">Back</a>
 
-
 </div>
-
-
 
     <div style="margin-bottom: 100px;"></div>
 
