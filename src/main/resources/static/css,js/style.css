@@ -8,6 +8,9 @@ body{
 .jumbotron{
     margin-bottom: 0px;
 }
+.navbar{
+    background: #000000b3 !important;
+}
 
 .main-img{
     width: 100%;
@@ -16,7 +19,7 @@ body{
     height: 300px;
 }
 .detail-card-img{
-width: 100%;
+    width: 100%;
 }
 
 a{
@@ -45,10 +48,12 @@ a:hover{
 .nav-home{
     font-size: 22px;
     margin-left: 15px;
+    color:white !important;
 }
 .nav-link{
 font-size: 18px;
     margin-left: 15px;
+    color:white !important;
 }
 th, td{
     padding: 10px;
