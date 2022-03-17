@@ -1,6 +1,9 @@
 # Movie-Review-Site
 팀프로젝트_SpringBoot 로 구현하는 영화 리뷰 사이트 입니다.   
 
+구현 과정:  
+https://gallery-k.tistory.com/category/%EC%BB%B4%ED%93%A8%ED%84%B0/%EC%9B%B9%20%EA%B0%9C%EB%B0%9C_%ED%8C%80%ED%94%8C
+
 ## 페이지 설계
 
 영화 페이지에서는 영화 제목, 영화 이미지, 영화 정보, 영화 평점 등을 볼 수 있습니다.   
